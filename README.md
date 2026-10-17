@@ -14,6 +14,6 @@ See [the backlog](docs/backlog/README.md) for 7 MVP issues and 8 post-MVP issues
 including Render deployment, live-provider validation, Untappd sign-in, physical
 iPhone testing, shelf/tap-handle recognition, and live camera overlays.
 
-Issue bodies are prepared locally. Their presence in this repository does not
-mean GitHub issues were created. The backlog includes a resumable publishing
-script for when authenticated GitHub API access is available.
+All 15 backlog issues have been created on GitHub and verified. The backlog
+index links to each issue and preserves its submitted body. A resumable
+publishing script skips existing matching issues to avoid duplicates.

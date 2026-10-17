@@ -4,7 +4,9 @@
     "phase": "MVP",
     "title": "[MVP] Recover and commit the photo-menu implementation",
     "body_file": "mvp-01.md",
-    "dependencies": []
+    "dependencies": [],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/1",
+    "github_number": 1
   },
   {
     "id": "MVP-02",
@@ -13,7 +15,9 @@
     "body_file": "mvp-02.md",
     "dependencies": [
       "MVP-01"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/2",
+    "github_number": 2
   },
   {
     "id": "MVP-03",
@@ -22,7 +26,9 @@
     "body_file": "mvp-03.md",
     "dependencies": [
       "MVP-02"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/3",
+    "github_number": 3
   },
   {
     "id": "MVP-04",
@@ -32,7 +38,9 @@
     "dependencies": [
       "MVP-02",
       "MVP-03"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/4",
+    "github_number": 4
   },
   {
     "id": "MVP-05",
@@ -42,7 +50,9 @@
     "dependencies": [
       "MVP-02",
       "MVP-03"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/5",
+    "github_number": 5
   },
   {
     "id": "MVP-06",
@@ -52,7 +62,9 @@
     "dependencies": [
       "MVP-03",
       "MVP-05"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/6",
+    "github_number": 6
   },
   {
     "id": "MVP-07",
@@ -64,7 +76,9 @@
       "MVP-04",
       "MVP-05",
       "MVP-06"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/7",
+    "github_number": 7
   },
   {
     "id": "POST-01",
@@ -73,7 +87,9 @@
     "body_file": "post-01.md",
     "dependencies": [
       "MVP-07"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/8",
+    "github_number": 8
   },
   {
     "id": "POST-02",
@@ -82,7 +98,9 @@
     "body_file": "post-02.md",
     "dependencies": [
       "MVP-04"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/9",
+    "github_number": 9
   },
   {
     "id": "POST-03",
@@ -91,7 +109,9 @@
     "body_file": "post-03.md",
     "dependencies": [
       "MVP-06"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/10",
+    "github_number": 10
   },
   {
     "id": "POST-04",
@@ -100,7 +120,9 @@
     "body_file": "post-04.md",
     "dependencies": [
       "MVP-06"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/11",
+    "github_number": 11
   },
   {
     "id": "POST-05",
@@ -110,7 +132,9 @@
     "dependencies": [
       "MVP-05",
       "MVP-06"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/12",
+    "github_number": 12
   },
   {
     "id": "POST-06",
@@ -120,7 +144,9 @@
     "dependencies": [
       "MVP-05",
       "MVP-07"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/13",
+    "github_number": 13
   },
   {
     "id": "POST-07",
@@ -129,7 +155,9 @@
     "body_file": "post-07.md",
     "dependencies": [
       "MVP-06"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/14",
+    "github_number": 14
   },
   {
     "id": "POST-08",
@@ -139,6 +167,8 @@
     "dependencies": [
       "MVP-07",
       "POST-01"
-    ]
+    ],
+    "github_url": "https://github.com/jeffpaul/arntappd/issues/15",
+    "github_number": 15
   }
 ]

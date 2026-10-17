@@ -1,6 +1,6 @@
 # Arntappd alpha backlog
 
-These are prepared GitHub issue bodies, not proof that remote issues exist.
+All 15 issues below were created on GitHub and read back successfully on October 17, 2026. The Markdown files preserve the submitted issue bodies; GitHub is authoritative for subsequent discussion and status.
 
 ## Current repository state
 
@@ -14,30 +14,30 @@ Render is the selected alpha host. Railway was rejected; no deployment has been 
 
 ### MVP
 
-- [MVP-01: Recover and commit the photo-menu implementation](mvp-01.md)
-- [MVP-02: Configure Render and publish a reachable HTTPS alpha](mvp-02.md)
-- [MVP-03: Verify Google Vision and Untappd from the deployed host](mvp-03.md)
-- [MVP-04: Complete deployed Untappd sign-in and personalized-data validation](mvp-04.md)
-- [MVP-05: Test camera capture and photo-library upload on iPhone 17](mvp-05.md)
-- [MVP-06: Evaluate real drink menus and verify matching/overlay fallbacks](mvp-06.md)
-- [MVP-07: Document alpha guardrails and an end-to-end tester checklist](mvp-07.md)
+- [MVP-01 / #1: Recover and commit the photo-menu implementation](https://github.com/jeffpaul/arntappd/issues/1) ([submitted body](mvp-01.md))
+- [MVP-02 / #2: Configure Render and publish a reachable HTTPS alpha](https://github.com/jeffpaul/arntappd/issues/2) ([submitted body](mvp-02.md))
+- [MVP-03 / #3: Verify Google Vision and Untappd from the deployed host](https://github.com/jeffpaul/arntappd/issues/3) ([submitted body](mvp-03.md))
+- [MVP-04 / #4: Complete deployed Untappd sign-in and personalized-data validation](https://github.com/jeffpaul/arntappd/issues/4) ([submitted body](mvp-04.md))
+- [MVP-05 / #5: Test camera capture and photo-library upload on iPhone 17](https://github.com/jeffpaul/arntappd/issues/5) ([submitted body](mvp-05.md))
+- [MVP-06 / #6: Evaluate real drink menus and verify matching/overlay fallbacks](https://github.com/jeffpaul/arntappd/issues/6) ([submitted body](mvp-06.md))
+- [MVP-07 / #7: Document alpha guardrails and an end-to-end tester checklist](https://github.com/jeffpaul/arntappd/issues/7) ([submitted body](mvp-07.md))
 
 ### Post-MVP
 
-- [POST-01: Persist sessions, caches and rate limits for broader deployment](post-01.md)
-- [POST-02: Improve personal history coverage and friends-rating context](post-02.md)
-- [POST-03: Recognize individual beers in store-shelf photos](post-03.md)
-- [POST-04: Identify beers from rows of tap handles](post-04.md)
-- [POST-05: Add live camera recognition and stable AR overlays](post-05.md)
-- [POST-06: Broaden browser, Android-device and accessibility coverage](post-06.md)
-- [POST-07: Improve OCR quality, matching confidence and scan efficiency](post-07.md)
-- [POST-08: Prepare privacy, retention and operational support for a public beta](post-08.md)
+- [POST-01 / #8: Persist sessions, caches and rate limits for broader deployment](https://github.com/jeffpaul/arntappd/issues/8) ([submitted body](post-01.md))
+- [POST-02 / #9: Improve personal history coverage and friends-rating context](https://github.com/jeffpaul/arntappd/issues/9) ([submitted body](post-02.md))
+- [POST-03 / #10: Recognize individual beers in store-shelf photos](https://github.com/jeffpaul/arntappd/issues/10) ([submitted body](post-03.md))
+- [POST-04 / #11: Identify beers from rows of tap handles](https://github.com/jeffpaul/arntappd/issues/11) ([submitted body](post-04.md))
+- [POST-05 / #12: Add live camera recognition and stable AR overlays](https://github.com/jeffpaul/arntappd/issues/12) ([submitted body](post-05.md))
+- [POST-06 / #13: Broaden browser, Android-device and accessibility coverage](https://github.com/jeffpaul/arntappd/issues/13) ([submitted body](post-06.md))
+- [POST-07 / #14: Improve OCR quality, matching confidence and scan efficiency](https://github.com/jeffpaul/arntappd/issues/14) ([submitted body](post-07.md))
+- [POST-08 / #15: Prepare privacy, retention and operational support for a public beta](https://github.com/jeffpaul/arntappd/issues/15) ([submitted body](post-08.md))
 
 ## Publishing the issues
 
-The current environment can access the Git repository, but the initial GitHub API checks were rejected by the network proxy. `api.github.com` has been added to the cloud configuration draft; that save does not apply or publish it. API connectivity and authentication remain to be verified after the settings are applied.
+Initial GitHub API requests were blocked by the network proxy. After `api.github.com` was added to the cloud configuration draft, authenticated API requests became available and all 15 issues were created and verified. The domain requirement is saved in the draft; publication remains a separate user action. Git push access was also verified.
 
-Once GitHub API access is available, run:
+To resume or verify publication without duplicating matching issues, run:
 
 ```sh
 python3 scripts/publish-backlog.py --repo jeffpaul/arntappd
