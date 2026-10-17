@@ -2,6 +2,11 @@
 
 All 15 issues below were created on GitHub and read back successfully on October 17, 2026. The Markdown files preserve the submitted issue bodies; GitHub is authoritative for subsequent discussion and status.
 
+Read [the rebuild roadmap](../../ROADMAP.md) for the full implementation
+specification and milestone order. Use [the validation template](../validation/TEMPLATE.md)
+to record new checks. The owner requested a restart plan after recovery from
+the available copies failed; the roadmap does not close the implementation issues.
+
 ## Current repository state
 
 On October 17, 2026, this restored checkout and remote `main` contained only the original `.gitkeep`. The earlier application files described in the conversation were absent. Checking available workspace files, Git objects, branches and reflogs found no recoverable application source. The user-provided `arntappd.zip` was inspected as well: it contains the same `.gitkeep` plus Git metadata for the initial commit, with no source/tests to recover. No archive hooks or configuration were executed. Do not deploy this repository as an app until MVP-01 is resolved.
@@ -10,7 +15,7 @@ Historical chat reports described a Next.js 16.4 / React photo-menu MVP using Go
 
 Render is the selected alpha host. Railway was rejected; no deployment has been created by this backlog work. API credentials must stay in secure environment settings, never source or issue bodies.
 
-## Proposed issues
+## Published issues
 
 ### MVP
 
