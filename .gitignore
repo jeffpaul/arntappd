@@ -1,0 +1,12 @@
+.backlog-publish-receipt.json
+__pycache__/
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+playwright-report/
+test-results/
+.npm-cache/

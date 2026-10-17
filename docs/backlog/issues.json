@@ -1,0 +1,144 @@
+[
+  {
+    "id": "MVP-01",
+    "phase": "MVP",
+    "title": "[MVP] Recover and commit the photo-menu implementation",
+    "body_file": "mvp-01.md",
+    "dependencies": []
+  },
+  {
+    "id": "MVP-02",
+    "phase": "MVP",
+    "title": "[MVP] Configure Render and publish a reachable HTTPS alpha",
+    "body_file": "mvp-02.md",
+    "dependencies": [
+      "MVP-01"
+    ]
+  },
+  {
+    "id": "MVP-03",
+    "phase": "MVP",
+    "title": "[MVP] Verify Google Vision and Untappd from the deployed host",
+    "body_file": "mvp-03.md",
+    "dependencies": [
+      "MVP-02"
+    ]
+  },
+  {
+    "id": "MVP-04",
+    "phase": "MVP",
+    "title": "[MVP] Complete deployed Untappd sign-in and personalized-data validation",
+    "body_file": "mvp-04.md",
+    "dependencies": [
+      "MVP-02",
+      "MVP-03"
+    ]
+  },
+  {
+    "id": "MVP-05",
+    "phase": "MVP",
+    "title": "[MVP] Test camera capture and photo-library upload on iPhone 17",
+    "body_file": "mvp-05.md",
+    "dependencies": [
+      "MVP-02",
+      "MVP-03"
+    ]
+  },
+  {
+    "id": "MVP-06",
+    "phase": "MVP",
+    "title": "[MVP] Evaluate real drink menus and verify matching/overlay fallbacks",
+    "body_file": "mvp-06.md",
+    "dependencies": [
+      "MVP-03",
+      "MVP-05"
+    ]
+  },
+  {
+    "id": "MVP-07",
+    "phase": "MVP",
+    "title": "[MVP] Document alpha guardrails and an end-to-end tester checklist",
+    "body_file": "mvp-07.md",
+    "dependencies": [
+      "MVP-03",
+      "MVP-04",
+      "MVP-05",
+      "MVP-06"
+    ]
+  },
+  {
+    "id": "POST-01",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Persist sessions, caches and rate limits for broader deployment",
+    "body_file": "post-01.md",
+    "dependencies": [
+      "MVP-07"
+    ]
+  },
+  {
+    "id": "POST-02",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Improve personal history coverage and friends-rating context",
+    "body_file": "post-02.md",
+    "dependencies": [
+      "MVP-04"
+    ]
+  },
+  {
+    "id": "POST-03",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Recognize individual beers in store-shelf photos",
+    "body_file": "post-03.md",
+    "dependencies": [
+      "MVP-06"
+    ]
+  },
+  {
+    "id": "POST-04",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Identify beers from rows of tap handles",
+    "body_file": "post-04.md",
+    "dependencies": [
+      "MVP-06"
+    ]
+  },
+  {
+    "id": "POST-05",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Add live camera recognition and stable AR overlays",
+    "body_file": "post-05.md",
+    "dependencies": [
+      "MVP-05",
+      "MVP-06"
+    ]
+  },
+  {
+    "id": "POST-06",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Broaden browser, Android-device and accessibility coverage",
+    "body_file": "post-06.md",
+    "dependencies": [
+      "MVP-05",
+      "MVP-07"
+    ]
+  },
+  {
+    "id": "POST-07",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Improve OCR quality, matching confidence and scan efficiency",
+    "body_file": "post-07.md",
+    "dependencies": [
+      "MVP-06"
+    ]
+  },
+  {
+    "id": "POST-08",
+    "phase": "Post-MVP",
+    "title": "[Post-MVP] Prepare privacy, retention and operational support for a public beta",
+    "body_file": "post-08.md",
+    "dependencies": [
+      "MVP-07",
+      "POST-01"
+    ]
+  }
+]
