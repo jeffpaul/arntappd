@@ -1,0 +1,25 @@
+# Render Blueprint for the Arntappd alpha: one always-on-when-awake Node web
+# service. Set up with New > Blueprint in the Render dashboard. Values marked
+# sync: false are asked for once during setup and stay private in Render.
+services:
+  - type: web
+    name: arntappd
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Encrypts the sign-in cookie. Render makes a random value once.
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: UNTAPPD_CLIENT_ID
+        sync: false
+      - key: UNTAPPD_CLIENT_SECRET
+        sync: false
+      # Reads menu photos. Leave empty to run with the sample menu only.
+      - key: ANTHROPIC_API_KEY
+        sync: false

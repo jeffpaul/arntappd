@@ -136,3 +136,4 @@ h3 { font-size: 1.05rem; margin: 0; }
 .rating { font-weight: 800; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
 .rating.none { color: var(--muted); }
 .rating-note { font-size: 0.82rem; color: var(--muted); }
+.account { display: inline-flex; align-items: center; gap: 4px; }

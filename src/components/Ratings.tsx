@@ -12,13 +12,13 @@ function personalLabel(d: BeerDetails): string {
     case "signed_out":
       return "Sign in to see";
     default:
-      return "Unknown";
+      return d.you.explanation ?? "Unknown";
   }
 }
 
 function friendsLabel(m: Metric): string {
   if (m.coverage === "signed_out") return "Sign in to see";
-  if (m.coverage === "unavailable") return "Unavailable";
+  if (m.coverage === "unavailable") return m.explanation ?? "Unavailable";
   if (!m.checkinCount) return "No recent check-ins";
   const ratings = m.ratingCount ?? 0;
   return `${m.checkinCount} recent check-in${m.checkinCount === 1 ? "" : "s"}${ratings !== m.checkinCount ? `, ${ratings} rated` : ""}`;
