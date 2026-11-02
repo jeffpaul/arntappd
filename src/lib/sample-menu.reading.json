@@ -1,0 +1,120 @@
+{
+  "image": {
+    "width": 1200,
+    "height": 1600
+  },
+  "beers": [
+    {
+      "name": "Two Hearted IPA",
+      "brewery": "Bell's Brewery",
+      "style": "American IPA",
+      "vintage": null,
+      "abv": 7,
+      "price": "$8",
+      "box": {
+        "x": 0.0667,
+        "y": 0.1955,
+        "width": 0.3696,
+        "height": 0.0424
+      }
+    },
+    {
+      "name": "Pale Ale",
+      "brewery": "Sierra Nevada",
+      "style": "American Pale Ale",
+      "vintage": null,
+      "abv": 5.6,
+      "price": "$7",
+      "box": {
+        "x": 0.0667,
+        "y": 0.3242,
+        "width": 0.4,
+        "height": 0.0424
+      }
+    },
+    {
+      "name": "Pliny the Elder",
+      "brewery": "Russian River Brewing",
+      "style": "Double IPA",
+      "vintage": null,
+      "abv": 8,
+      "price": "$9",
+      "box": {
+        "x": 0.0667,
+        "y": 0.433,
+        "width": 0.4,
+        "height": 0.0424
+      }
+    },
+    {
+      "name": "KBS",
+      "brewery": "Founders Brewing Co.",
+      "style": "Imperial Stout",
+      "vintage": null,
+      "abv": 12,
+      "price": "$12",
+      "box": {
+        "x": 0.0667,
+        "y": 0.5617,
+        "width": 0.4,
+        "height": 0.0424
+      }
+    },
+    {
+      "name": "Guinness Draught",
+      "brewery": "Guinness",
+      "style": "Irish Dry Stout",
+      "vintage": null,
+      "abv": 4.2,
+      "price": "$7",
+      "box": {
+        "x": 0.5333,
+        "y": 0.1955,
+        "width": 0.3388,
+        "height": 0.0424
+      }
+    },
+    {
+      "name": "Allagash White",
+      "brewery": "Allagash Brewing",
+      "style": "Witbier",
+      "vintage": null,
+      "abv": 5.2,
+      "price": "$8",
+      "box": {
+        "x": 0.5333,
+        "y": 0.3043,
+        "width": 0.3388,
+        "height": 0.0424
+      }
+    },
+    {
+      "name": "Bourbon County Stout",
+      "brewery": "Goose Island",
+      "style": "Imperial Stout",
+      "vintage": "2023",
+      "abv": 14.5,
+      "price": "$18",
+      "box": {
+        "x": 0.5333,
+        "y": 0.4355,
+        "width": 0.4,
+        "height": 0.0399
+      }
+    },
+    {
+      "name": "IPA",
+      "brewery": "Lagunitas",
+      "style": "American IPA",
+      "vintage": null,
+      "abv": 6.2,
+      "price": "$7",
+      "box": {
+        "x": 0.5333,
+        "y": 0.5417,
+        "width": 0.3183,
+        "height": 0.0424
+      }
+    }
+  ]
+}
