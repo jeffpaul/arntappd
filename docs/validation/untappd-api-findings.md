@@ -36,3 +36,8 @@ Probe run 2026-10-23 with `scripts/untappd-probe.py` against one real account
    Rough estimate: 84 friends at ~2,000 beers each is ~3,400 calls, about 1.5
    days at 100/hour for the first sync.
 3. **Drop friends for the MVP:** show You and Global only.
+
+## Decision
+
+2026-11-02: JP chose option 1 for the MVP (friends' ratings from the feed),
+with the background history sync (option 2) added after the MVP.
