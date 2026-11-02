@@ -16,7 +16,9 @@ const searchCache = singleton("untappdSearch", () => new TtlCache<SearchHit[]>(5
 const infoCache = singleton("untappdInfo", () => new TtlCache<BeerInfo>(1000, 60 * MINUTE));
 const personalCache = singleton("untappdPersonal", () => new TtlCache<BeerInfo>(1000, 10 * MINUTE));
 const feedCache = singleton("untappdFeed", () => new TtlCache<FriendsFeed>(50, 10 * MINUTE));
-const userCache = singleton("untappdUser", () => new TtlCache<{ uid: number }>(50, 60 * MINUTE));
+const userCache = singleton("untappdUser", () => new TtlCache<UntappdUser>(200, 60 * MINUTE));
+
+export type UntappdUser = { uid: number; userName: string | null };
 
 /** Friends feed: Untappd stops paging after roughly 350 check-ins, so 8 pages of 50 covers it. */
 const FEED_PAGE_SIZE = 50;
@@ -85,6 +87,9 @@ async function call(path: string, params: Record<string, string>, auth: Auth): P
   const code = body?.meta?.code ?? response.status;
   if (response.status === 429 || code === 429 || body?.meta?.error_type === "invalid_limit") {
     throw new AppError("PROVIDER_LIMIT", "Untappd's hourly limit is used up. Try again later.", 429);
+  }
+  if (auth.token && (response.status === 401 || code === 401 || body?.meta?.error_type === "invalid_auth")) {
+    throw new AppError("AUTH_REQUIRED", "Your Untappd sign-in has expired. Please sign in again.", 401);
   }
   if (code === 404 || body?.meta?.error_type === "invalid_param") {
     throw new AppError("NOT_FOUND", "Untappd has no beer with that id.", 404);
@@ -182,14 +187,58 @@ export async function beerInfo(id: number, token: string | null): Promise<BeerIn
   return info;
 }
 
-export async function currentUserId(token: string): Promise<number | null> {
+export async function currentUser(token: string): Promise<UntappdUser | null> {
   const key = tokenScope(token);
   const cached = userCache.get(key);
-  if (cached) return cached.uid;
+  if (cached) return cached;
   const response = await call("/user/info", { compact: "true" }, { token });
   const uid = num(response?.user?.uid);
-  if (uid !== null) userCache.set(key, { uid });
-  return uid;
+  if (uid === null) return null;
+  const user = { uid, userName: str(response?.user?.user_name) };
+  userCache.set(key, user);
+  return user;
+}
+
+export async function currentUserId(token: string): Promise<number | null> {
+  return (await currentUser(token))?.uid ?? null;
+}
+
+const OAUTH = "https://untappd.com/oauth";
+
+/** Where to send the browser to sign in. Untappd echoes `state` back to the callback. */
+export function authenticateUrl(redirectUrl: string, state: string): string | null {
+  const id = config.untappdClientId();
+  if (!id) return null;
+  const q = new URLSearchParams({ client_id: id, response_type: "code", redirect_url: redirectUrl, state });
+  return `${OAUTH}/authenticate/?${q}`;
+}
+
+/** Trade the one-time code for an access token. Server-side only; the URL carries the secret. */
+export async function exchangeCode(code: string, redirectUrl: string): Promise<string> {
+  const id = config.untappdClientId();
+  const secret = config.untappdClientSecret();
+  if (!id || !secret) throw new AppError("LOOKUP_UNAVAILABLE", "Untappd sign-in is not configured.", 503);
+  const q = new URLSearchParams({
+    client_id: id,
+    client_secret: secret,
+    response_type: "code",
+    redirect_url: redirectUrl,
+    code,
+  });
+  let body: Json = null;
+  try {
+    const response = await fetch(`${OAUTH}/authorize/?${q}`, {
+      headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+      cache: "no-store",
+    });
+    body = await response.json().catch(() => null);
+  } catch {
+    throw new AppError("LOOKUP_UNAVAILABLE", "Could not reach Untappd to finish signing in.", 502);
+  }
+  const token = str(body?.response?.access_token);
+  if (!token) throw new AppError("LOOKUP_UNAVAILABLE", "Untappd did not accept the sign-in. Try again.", 502);
+  return token;
 }
 
 export function parseCheckins(response: Json): { items: FeedCheckin[]; nextMaxId: number | null } {

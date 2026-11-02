@@ -32,8 +32,16 @@ export function MenuApp() {
   itemsRef.current = items;
   const objectUrl = useRef<string | null>(null);
 
+  const [authNotice, setAuthNotice] = useState<string | null>(null);
+
   useEffect(() => {
     getJson<Status>("/api/status").then(setStatus).catch(() => setStatus(null));
+    // The sign-in callback lands on /?auth=...; show the outcome, then clean the URL.
+    const auth = new URLSearchParams(window.location.search).get("auth");
+    if (auth) {
+      setAuthNotice(AUTH_MESSAGES[auth] ?? null);
+      window.history.replaceState(null, "", "/");
+    }
     return () => {
       if (objectUrl.current) URL.revokeObjectURL(objectUrl.current);
     };
@@ -203,10 +211,18 @@ export function MenuApp() {
         <button type="button" className="brand" onClick={reset}>
           Arntappd
         </button>
-        <span className="account">
-          {status?.personalConfigured ? "Untappd: dev account" : "Not signed in"}
-        </span>
+        <Account status={status} hasScan={items.length > 0} onSignedOut={() => {
+          setStatus((s) => (s ? { ...s, account: null } : s));
+          // Ratings on screen were for the signed-in account; reload them signed out.
+          for (const item of itemsRef.current) if (item.selectedId !== null) void loadDetails(item.key, item.selectedId);
+        }} />
       </header>
+      {authNotice ? (
+        <p className="banner" role="status">
+          {authNotice}{" "}
+          <button type="button" className="btn link" onClick={() => setAuthNotice(null)}>Dismiss</button>
+        </p>
+      ) : null}
 
       {phase.name === "start" ? (
         <section className="start">
@@ -352,12 +368,66 @@ export function MenuApp() {
   );
 }
 
+const AUTH_MESSAGES: Record<string, string> = {
+  ok: "Signed in with Untappd. You and Friends ratings are on.",
+  denied: "Untappd sign-in was cancelled.",
+  expired: "That sign-in link expired. Please try signing in again.",
+  failed: "Untappd sign-in did not finish. Please try again.",
+  unavailable: "Untappd sign-in is not set up on this server yet.",
+};
+
+function Account({ status, hasScan, onSignedOut }: { status: Status | null; hasScan: boolean; onSignedOut: () => void }) {
+  const [busy, setBusy] = useState(false);
+  if (!status) return <span className="account" />;
+  const account = status.account;
+  if (account?.source === "session") {
+    return (
+      <span className="account">
+        {account.userName ? `@${account.userName}` : "Signed in"}
+        <button
+          type="button"
+          className="btn link"
+          disabled={busy}
+          onClick={async () => {
+            setBusy(true);
+            try {
+              await getJson("/api/auth/logout", { method: "POST" });
+              onSignedOut();
+            } catch {
+              // Leave the state as is; the person can retry.
+            } finally {
+              setBusy(false);
+            }
+          }}
+        >
+          Sign out
+        </button>
+      </span>
+    );
+  }
+  if (!status.signInConfigured) {
+    return <span className="account">{account?.source === "dev" ? "Dev account" : "Not signed in"}</span>;
+  }
+  return (
+    <a
+      className="btn link"
+      href="/api/auth/login"
+      onClick={(e) => {
+        // Sign-in leaves the page, and the current scan is kept only in this page.
+        if (hasScan && !window.confirm("Signing in leaves this page, so this scan will be cleared. Sign in now?")) e.preventDefault();
+      }}
+    >
+      Sign in with Untappd
+    </a>
+  );
+}
+
 function StatusNotes({ status }: { status: Status | null }) {
   if (!status) return null;
   const notes: string[] = [];
   if (!status.untappdConfigured) notes.push("Untappd lookups are not configured on this server.");
   if (!status.visionConfigured) notes.push("Photo reading is not configured yet, so only the sample menu works.");
-  if (!status.personalConfigured) notes.push("Untappd sign-in is coming next; until then You and Friends ratings are not shown.");
+  if (!status.account) notes.push("Sign in with Untappd to see your own and your friends' ratings.");
   if (!notes.length) return null;
   return (
     <ul className="notes">

@@ -84,11 +84,14 @@ export type ErrorCode =
   | "LOOKUP_UNAVAILABLE"
   | "PROVIDER_LIMIT"
   | "NOT_FOUND"
+  | "AUTH_REQUIRED"
   | "INTERNAL";
 
 export type Status = {
   untappdConfigured: boolean;
   visionConfigured: boolean;
-  personalConfigured: boolean;
+  signInConfigured: boolean;
+  /** Who personal ratings are for: a signed-in account, the dev token, or nobody. */
+  account: { source: "session" | "dev"; userName: string | null } | null;
   visionModel: string;
 };
